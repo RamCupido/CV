@@ -1,8 +1,8 @@
-// Tema oscuro/claro
+// Dark/Light theme toggle
 const themeToggle = document.getElementById('themeToggle');
 const body = document.body;
 
-// Verificar preferencia del usuario
+// Check user's preference
 const currentTheme = localStorage.getItem('theme') || 'light';
 body.setAttribute('data-theme', currentTheme);
 
@@ -12,7 +12,7 @@ if (currentTheme === 'dark') {
     themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
 }
 
-// Alternar tema
+// Toggle theme
 themeToggle.addEventListener('click', () => {
     const currentTheme = body.getAttribute('data-theme');
     const newTheme = currentTheme === 'light' ? 'dark' : 'light';
@@ -27,7 +27,7 @@ themeToggle.addEventListener('click', () => {
     }
 });
 
-// Animaciones al hacer scroll
+// Scroll animations
 const sections = document.querySelectorAll('section');
 
 const observerOptions = {
@@ -46,7 +46,7 @@ sections.forEach(section => {
     observer.observe(section);
 });
 
-// Navegación suave
+// Smooth scrolling navigation
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
