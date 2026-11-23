@@ -1,191 +1,389 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="dark">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portafolio Profesional</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Ramsés Riofrío · Desarrollador Full Stack</title>
+    <meta name="description"
+        content="Portafolio de Ramsés Riofrío, desarrollador Full Stack y estudiante de Ingeniería en Sistemas de Información en Quito, Ecuador. Python, Java, JavaScript, Spring Boot, SQL, PostgreSQL y Docker.">
+    <meta name="author" content="Ramsés Riofrío">
+
+    <!-- Open Graph: vista previa al compartir el enlace en LinkedIn / WhatsApp -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Ramsés Riofrío · Desarrollador Full Stack">
+    <meta property="og:description"
+        content="Desarrollo backend, plataformas web y despliegue con Docker. Conoce mi experiencia y proyectos.">
+    <meta property="og:image" content="img/perfil.png">
+
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%2314b8a6'/><text x='50' y='66' font-size='46' font-family='monospace' font-weight='700' text-anchor='middle' fill='white'>RR</text></svg>">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
     <link rel="stylesheet" href="style.css">
+
+    <!-- Aplica el tema guardado antes de pintar para evitar parpadeo -->
+    <script>
+        (function () {
+            var t = localStorage.getItem('theme') ||
+                (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+            document.documentElement.setAttribute('data-theme', t);
+        })();
+    </script>
 </head>
 
 <body>
-    <header>
-        <div class="container">
-            <nav>
-                <div class="logo">Portafolio</div>
-                <ul class="nav-links">
-                    <li><a href="#about">Sobre mí</a></li>
-                    <li><a href="#skills">Habilidades</a></li>
-                    <li><a href="#experience">Experiencia</a></li>
-                    <li><a href="#projects">Proyectos</a></li>
-                    <li><a href="#contact">Contacto</a></li>
-                </ul>
-                <button class="theme-toggle" id="themeToggle">
-                    <i class="fas fa-moon"></i>
+    <div class="scroll-progress" id="scrollProgress"></div>
+    <div class="bg-grid" aria-hidden="true"></div>
+    <div class="bg-glow" aria-hidden="true"></div>
+
+    <!-- ============ NAV ============ -->
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="#home" class="logo" aria-label="Inicio">
+                <span class="logo-bracket">&lt;</span>RR<span class="logo-bracket">/&gt;</span>
+            </a>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about" class="nav-link">Sobre mí</a></li>
+                <li><a href="#skills" class="nav-link">Habilidades</a></li>
+                <li><a href="#experience" class="nav-link">Experiencia</a></li>
+                <li><a href="#projects" class="nav-link">Proyectos</a></li>
+                <li><a href="#contact" class="nav-link">Contacto</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="icon-btn" id="themeToggle" aria-label="Cambiar tema">
+                    <i class="fas fa-sun"></i>
                 </button>
-            </nav>
-        </div>
+                <button class="icon-btn menu-btn" id="menuToggle" aria-label="Abrir menú" aria-expanded="false"
+                    aria-controls="navLinks">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </nav>
     </header>
 
-    <div class="container">
-        <div class="main-content">
-            <!-- Profile Card -->
-            <div class="profile-card">
-                <img src="https://drive.google.com/uc?export=view&id=1wIpw1QdMyI_XBWNBRU5U6pknFOkeG27r" alt="Profile Image" class="profile-img">
-                <h1 class="profile-name">Ramses Riofrio</h1>
-                <p class="profile-title">Ingeniero en Sistemas de la Información</p>
+    <main>
+        <!-- ============ HERO ============ -->
+        <section class="hero container" id="home">
+            <div class="hero-text">
+                <span class="status-pill">
+                    <span class="status-dot"></span> Abierto a nuevas oportunidades
+                </span>
 
-                <div class="profile-info">
-                    <p><i class="fas fa-map-marker-alt"></i> Quito, Ecuador</p>
-                    <p><i class="fas fa-envelope"></i> ramses-02@hotmail.es</p>
-                    <p><i class="fas fa-phone"></i> +593 95 924 1977</p>
-                    <p><i class="fas fa-birthday-cake"></i> 26 Septiembre, 2002</p>
+                <h1 class="hero-title">
+                    Hola, soy <span class="gradient-text">Ramsés Riofrío</span>
+                </h1>
+
+                <p class="hero-role">
+                    <span class="mono">&gt;</span>
+                    <span id="typed" class="typed"></span><span class="cursor">|</span>
+                </p>
+
+                <p class="hero-desc">
+                    Desarrollador Full Stack y estudiante de último año de Ingeniería en Sistemas de Información.
+                    Construyo servicios backend, plataformas web y despliego aplicaciones en contenedores
+                    con Docker para la <strong>Universidad Central del Ecuador</strong>.
+                </p>
+
+                <div class="hero-cta">
+                    <a href="#projects" class="btn btn-primary">
+                        <i class="fas fa-code"></i> Ver proyectos
+                    </a>
+                    <a href="#contact" class="btn btn-ghost">
+                        <i class="fas fa-paper-plane"></i> Contáctame
+                    </a>
+                    <button class="btn btn-ghost" id="downloadCv" type="button">
+                        <i class="fas fa-file-arrow-down"></i> Descargar CV
+                    </button>
                 </div>
 
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-github"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
+                <div class="hero-social">
+                    <a href="https://github.com/RamCupido" target="_blank" rel="noopener" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/ramses-riofrio-vaca/" target="_blank" rel="noopener"
+                        aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="mailto:ramses-02@hotmail.es" aria-label="Correo">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <span class="hero-location"><i class="fas fa-location-dot"></i> Quito, Ecuador</span>
                 </div>
             </div>
 
-            <!-- Content Sections -->
-            <div class="content">
-                <!-- About Section -->
-                <section id="about">
-                    <h2>Sobre mí</h2>
-                    <div class="about-text">
-                        <p>¡Hola! Soy Ramses Riofrío, actualmente estudiante de Ingeniería en Sistemas de Informaciónen
-                            ultimos semestres. Me apasiona el desarrollo de software y disfruto constantemente
-                            aprendiendo sobre nuevas tecnologías, construyendo proyectos útiles y compartiendo
-                            conocimientos con la comunidad.</p>
-                        <p>Siempre busco estar al día con las últimas innovaciones tecnológicas para mejorar mis
-                            habilidades y seguir creciendo profesionalmente. Tengo experiencia brindando soporte a
-                            usuarios y trabajando en equipos de desarrollo en el área de backend. Esto me ha permitido
-                            fortalecer mis habilidades de colaboración, adaptarme a distintos entornos de trabajo y
-                            seguir perfeccionando mis competencias técnicas en el día a día.</p>
-                        <p>En mi tiempo libre, me encanta seguir explorando el mundo de la tecnología y sus avances, me
-                            considero un firme creyente del aprendizaje continuo para mantenerme actualizado y mejorar
-                            en cada aspecto de mi trabajo.</p>
+            <div class="hero-visual">
+                <div class="avatar-wrap">
+                    <div class="avatar-ring"></div>
+                    <img src="img/perfil.png"
+                        alt="Foto de Ramsés Riofrío" class="avatar" id="avatar">
+                    <div class="avatar-fallback" id="avatarFallback" hidden>RR</div>
+                </div>
+
+                <div class="code-card" aria-hidden="true">
+                    <div class="code-card-bar">
+                        <span></span><span></span><span></span>
+                        <em>ramses.py</em>
                     </div>
-                </section>
+<pre><code><span class="k">class</span> <span class="c">Developer</span>:
+    name     = <span class="s">"Ramsés Riofrío"</span>
+    location = <span class="s">"Quito, EC"</span>
+    stack    = [<span class="s">"Python"</span>, <span class="s">"Java"</span>,
+                <span class="s">"Spring Boot"</span>, <span class="s">"SQL"</span>,
+                <span class="s">"Docker"</span>]
 
-                <!-- Skills Section -->
-                <section id="skills">
-                    <h2>Habilidades</h2>
-                    <div class="skills-container">
-                        <div class="skill-item">
-                            <div class="skill-name">
-                                <span>Python</span>
-                            </div>
-                        </div>
+    <span class="k">def</span> <span class="f">learn</span>(self):
+        <span class="k">return</span> <span class="s">"siempre"</span></code></pre>
+                </div>
+            </div>
 
-                        <div class="skill-item">
-                            <div class="skill-name">
-                                <span>Java</span>
-                            </div>
-                        </div>
+            <a href="#about" class="scroll-hint" aria-label="Bajar a Sobre mí">
+                <i class="fas fa-chevron-down"></i>
+            </a>
+        </section>
 
-                        <div class="skill-item">
-                            <div class="skill-name">
-                                <span>JavaScript</span>
-                            </div>
-                        </div>
+        <!-- ============ ABOUT ============ -->
+        <section class="section container reveal" id="about">
+            <div class="section-head">
+                <span class="section-num">01.</span>
+                <h2>Sobre mí</h2>
+            </div>
 
-                        <div class="skill-item">
-                            <div class="skill-name">
-                                <span>Flask</span>
-                            </div>
-                        </div>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>
+                        Soy estudiante de los últimos semestres de <strong>Ingeniería en Sistemas de
+                            Información</strong> y actualmente trabajo como desarrollador Full Stack en la unidad de
+                        desarrollo de software de la Universidad Central del Ecuador, donde participo en la
+                        construcción de la nueva plataforma institucional.
+                    </p>
+                    <p>
+                        Mi fuerte es el <strong>backend</strong>: diseñar APIs, modelar bases de datos y llevar
+                        servicios a producción. He trabajado en la migración de sistemas hacia
+                        <strong>Docker</strong> y también tengo experiencia del lado del usuario, brindando
+                        soporte técnico y mejorando sitios web institucionales — algo que me ayuda a construir
+                        software pensando en quien lo usa.
+                    </p>
+                    <p>
+                        Creo firmemente en el aprendizaje continuo: siempre estoy explorando nuevas tecnologías,
+                        construyendo proyectos propios y compartiendo lo que aprendo.
+                    </p>
+                </div>
 
-                        <div class="skill-item">
-                            <div class="skill-name">
-                                <span>PostgreSQL</span>
-                            </div>
-                        </div>
+                <div class="stats">
+                    <div class="stat-card">
+                        <i class="fas fa-briefcase"></i>
+                        <span class="stat-value">2</span>
+                        <span class="stat-label">Roles en desarrollo y soporte</span>
                     </div>
-                </section>
-                <!-- Experience Section -->
-                <section id="experience">
-                    <h2>Practicas Pre Profesionales</h2>
-                    <div class="timeline">
-                        <div class="timeline-item">
-                            <div class="timeline-date">2025 (Mayo) - 2025 (Julio)</div>
-                            <h3 class="timeline-title">Soporte a Usuarios y Desarrollador Web</h3>
-                            <p class="timeline-company">Universidad Central Del Ecuador</p>
-                            <p class="timeline-description">Brindé soporte en la Facultad de Administración, además de realizar tareas de mantenimiento y mejora en el sitio web institucional.
-                                 Mi enfoque estuvo en la actualización de contenidos académicos, la incorporación de secciones clave como elecciones y nivelación, y la renovación de elementos visuales
-                                 para optimizar la experiencia del usuario.</p>
-                        </div>
+                    <div class="stat-card">
+                        <i class="fas fa-server"></i>
+                        <span class="stat-value">Backend</span>
+                        <span class="stat-label">Especialidad principal</span>
                     </div>
+                    <div class="stat-card">
+                        <i class="fab fa-docker"></i>
+                        <span class="stat-value">Docker</span>
+                        <span class="stat-label">Migración de sistemas</span>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span class="stat-value">UCE</span>
+                        <span class="stat-label">Ing. en Sistemas de Información</span>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-                    <div class="timeline">
-                        <div class="timeline-item">
-                            <div class="timeline-date">2025 (Septiembre) - Actualidad</div>
-                            <h3 class="timeline-title">Desarrollador Senior Full Stack</h3>
-                            <p class="timeline-company">Universidad Central Del Ecuador</p>
-                            <p class="timeline-description">Formé parte de la unidad de desarrollo de software, contribuyendo al desarrollo de la nueva plataforma de la universidad.
-                                 Realicé tareas tanto en el backend como en la migración de sistemas utilizando Kubernetes.</p>
-                        </div>
-                    </div>
-                </section>
+        <!-- ============ SKILLS ============ -->
+        <section class="section container reveal" id="skills">
+            <div class="section-head">
+                <span class="section-num">02.</span>
+                <h2>Habilidades</h2>
+            </div>
 
-                <!-- Projects Section -->
-                <section id="projects">
-                    <h2>Proyectos</h2>
-                    <div class="projects-grid">
-                        <div class="project-card">
-                            <img src="https://cdn.pixabay.com/photo/2016/11/18/22/21/restaurant-1837150_1280.jpg"
-                                alt="E-Commerce Platform" class="project-img">
-                            <div class="project-info">
-                                <h3 class="project-title">Plataforma de reseva de restaurantes</h3>
-                                <p>Plataforma completa de comercio electrónico con carrito de compras, pasarela de pago
-                                    y panel de administración.</p>
-                                <div class="project-links">
-                                    <a href="https://github.com/RamCupido/RestaurantesArquitectura"><i class="fab fa-github"></i> Código</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <!-- Contact Section -->
-                <section id="contact">
-                    <h2>Contacto</h2>
-                    <ul>
-                        <li>
-                            <strong>Correo Electrónico:</strong>
-                            <a href="mailto:ramses-02@hotmail.com">ramses-02@hotmail.com</a>
-                        </li>
-                        <li>
-                            <strong>Teléfono:</strong>
-                            <a href="tel:+123456789">+593 95 924 1977</a>
-                        </li>
-                        <li>
-                            <strong>GitHub:</strong>
-                            <a href="https://github.com/RamCupido" target="_blank">
-                                GitHub - RamCupido
-                            </a>
-                        </li>
-                        <li>
-                            <strong>LinkedIn:</strong>
-                            <a href="https://www.linkedin.com/in/ramses-riofrio-vaca/" target="_blank">
-                                LinkedIn - Ramses Riofrio Vaca
-                            </a>
-                        </li>
+            <div class="skills-grid">
+                <div class="skill-group">
+                    <h3><i class="fas fa-code"></i> Lenguajes</h3>
+                    <ul class="chips">
+                        <li class="chip"><i class="devicon-python-plain colored"></i> Python</li>
+                        <li class="chip"><i class="devicon-java-plain colored"></i> Java</li>
+                        <li class="chip"><i class="devicon-javascript-plain colored"></i> JavaScript</li>
+                        <li class="chip"><i class="devicon-html5-plain colored"></i> HTML</li>
+                        <li class="chip"><i class="devicon-css3-plain colored"></i> CSS</li>
                     </ul>
-                </section>
+                </div>
 
+                <div class="skill-group">
+                    <h3><i class="fas fa-server"></i> Backend y datos</h3>
+                    <ul class="chips">
+                        <li class="chip"><i class="devicon-spring-plain colored"></i> Spring Boot</li>
+                        <li class="chip"><i class="fas fa-database"></i> SQL</li>
+                        <li class="chip"><i class="devicon-postgresql-plain colored"></i> PostgreSQL</li>
+                        <li class="chip"><i class="fas fa-plug"></i> APIs REST</li>
+                    </ul>
+                </div>
+
+                <div class="skill-group">
+                    <h3><i class="fas fa-cloud"></i> DevOps y herramientas</h3>
+                    <ul class="chips">
+                        <li class="chip"><i class="devicon-docker-plain colored"></i> Docker</li>
+                        <li class="chip"><i class="devicon-git-plain colored"></i> Git</li>
+                        <li class="chip"><i class="devicon-github-original"></i> GitHub</li>
+                    </ul>
+                </div>
+
+                <div class="skill-group">
+                    <h3><i class="fas fa-users"></i> Habilidades blandas</h3>
+                    <ul class="chips">
+                        <li class="chip">Trabajo en equipo</li>
+                        <li class="chip">Soporte a usuarios</li>
+                        <li class="chip">Adaptabilidad</li>
+                        <li class="chip">Aprendizaje continuo</li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </div>
+        </section>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Ramses Riofrio. Todos los derechos reservados.</p>
+        <!-- ============ EXPERIENCE ============ -->
+        <section class="section container reveal" id="experience">
+            <div class="section-head">
+                <span class="section-num">03.</span>
+                <h2>Experiencia</h2>
+            </div>
+
+            <ol class="timeline">
+                <li class="timeline-item current">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-card">
+                        <div class="timeline-top">
+                            <div>
+                                <h3>Desarrollador Full Stack</h3>
+                                <p class="company"><i class="fas fa-building-columns"></i> Universidad Central del
+                                    Ecuador · Unidad de Desarrollo de Software</p>
+                            </div>
+                            <span class="date">Sep 2025 — May 2026 · Prácticas</span>
+                        </div>
+                        <ul class="achievements">
+                            <li>Desarrollo de la nueva plataforma institucional de la universidad como parte del
+                                equipo de desarrollo de software.</li>
+                            <li>Implementación de funcionalidades en el backend de la plataforma.</li>
+                            <li>Migración de sistemas existentes a una infraestructura basada en contenedores
+                                con Docker.</li>
+                        </ul>
+                        <ul class="tags">
+                            <li>Backend</li>
+                            <li>Docker</li>
+                            <li>Migración de sistemas</li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-card">
+                        <div class="timeline-top">
+                            <div>
+                                <h3>Soporte a Usuarios y Desarrollador Web</h3>
+                                <p class="company"><i class="fas fa-building-columns"></i> Universidad Central del
+                                    Ecuador · Facultad de Administración</p>
+                            </div>
+                            <span class="date">May 2025 — Jul 2025 · Prácticas</span>
+                        </div>
+                        <ul class="achievements">
+                            <li>Soporte técnico a usuarios de la Facultad.</li>
+                            <li>Mantenimiento y mejora del sitio web institucional, manteniendo actualizados los
+                                contenidos académicos.</li>
+                            <li>Incorporación de nuevas secciones clave como <em>Elecciones</em> y
+                                <em>Nivelación</em>.</li>
+                            <li>Renovación de elementos visuales del sitio para mejorar la experiencia de usuario.</li>
+                        </ul>
+                        <ul class="tags">
+                            <li>HTML</li>
+                            <li>CSS</li>
+                            <li>Soporte técnico</li>
+                            <li>UX</li>
+                        </ul>
+                    </div>
+                </li>
+            </ol>
+        </section>
+
+        <!-- ============ PROJECTS ============ -->
+        <section class="section container reveal" id="projects">
+            <div class="section-head">
+                <span class="section-num">04.</span>
+                <h2>Proyectos</h2>
+            </div>
+            <p class="section-sub">Algunas cosas que he construido. Más en mi
+                <a href="https://github.com/RamCupido" target="_blank" rel="noopener">GitHub</a>.
+            </p>
+
+            <div class="projects-filters" id="projectFilters" role="tablist"></div>
+            <!-- Las tarjetas se generan desde el arreglo PROJECTS en script.js -->
+            <div class="projects-grid" id="projectsGrid"></div>
+        </section>
+
+        <!-- ============ CONTACT ============ -->
+        <section class="section container reveal" id="contact">
+            <div class="contact-box">
+                <span class="section-num">05. ¿Qué sigue?</span>
+                <h2>Hablemos</h2>
+                <p>
+                    Estoy abierto a nuevas oportunidades, colaboraciones y proyectos interesantes.
+                    Si tienes una propuesta o simplemente quieres saludar, mi bandeja está abierta.
+                </p>
+
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <i class="fas fa-envelope"></i>
+                        <span class="contact-label">Correo</span>
+                        <a href="mailto:ramses-02@hotmail.es" id="emailText">ramses-02@hotmail.es</a>
+                        <button class="copy-btn" id="copyEmail" type="button" aria-label="Copiar correo">
+                            <i class="far fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                    <a class="contact-card" href="tel:+593959241977">
+                        <i class="fas fa-phone"></i>
+                        <span class="contact-label">Teléfono</span>
+                        <span>+593 95 924 1977</span>
+                    </a>
+                    <a class="contact-card" href="https://www.linkedin.com/in/ramses-riofrio-vaca/" target="_blank"
+                        rel="noopener">
+                        <i class="fab fa-linkedin-in"></i>
+                        <span class="contact-label">LinkedIn</span>
+                        <span>ramses-riofrio-vaca</span>
+                    </a>
+                    <a class="contact-card" href="https://github.com/RamCupido" target="_blank" rel="noopener">
+                        <i class="fab fa-github"></i>
+                        <span class="contact-label">GitHub</span>
+                        <span>RamCupido</span>
+                    </a>
+                </div>
+
+                <a href="mailto:ramses-02@hotmail.es" class="btn btn-primary btn-lg">
+                    <i class="fas fa-paper-plane"></i> Enviar un correo
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-inner">
+            <p>Diseñado y construido por <strong>Ramsés Riofrío</strong> · &copy; <span id="year"></span></p>
+            <a href="#home" class="back-top" aria-label="Volver arriba"><i class="fas fa-arrow-up"></i></a>
         </div>
     </footer>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
     <script src="script.js"></script>
 </body>
