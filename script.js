@@ -4,8 +4,32 @@
    - category: se usa para los filtros (se generan solos)
    - image: URL o ruta local (ej. "img/mi-proyecto.png")
    - demo: opcional, enlace a la versión desplegada
+   - highlights: opcional, logros técnicos en viñetas
+   - featured: opcional, la tarjeta ocupa todo el ancho
    ========================================================= */
 const PROJECTS = [
+    {
+        title: 'Sistema de Reservas de Coworking',
+        description:
+            'Aplicación web y API REST para reservar salas de reuniones, escritorios, oficinas y auditorios. ' +
+            'Agenda en bloques de 30 minutos, calendario mensual de reservas, panel de administración y ' +
+            'notificaciones por correo. Su regla central: dos personas nunca pueden reservar el mismo espacio ' +
+            'a la misma hora, ni siquiera si pulsan "Reservar" en el mismo instante.',
+        image: 'img/coworking.svg',
+        category: 'Full Stack',
+        featured: true,
+        highlights: [
+            'Cero reservas solapadas: restricción EXCLUDE con rangos de tiempo en PostgreSQL, validada con un test de concurrencia.',
+            'Autenticación JWT con roles (cliente / administrador) usando Spring Security.',
+            'Correos de confirmación y recordatorio 24 h antes, enviados en segundo plano con @Async y @Scheduled.',
+            'Cerca de 200 tests (JUnit 5, Mockito, Testcontainers) ejecutados en cada push con GitHub Actions.',
+            'API documentada con Swagger y migraciones versionadas con Flyway.',
+        ],
+        tech: ['Java 21', 'Spring Boot 3.5', 'Spring Security', 'JWT', 'PostgreSQL', 'Flyway',
+            'Thymeleaf', 'Bootstrap 5', 'Docker', 'Testcontainers', 'GitHub Actions'],
+        repo: 'https://github.com/RamCupido/sistema-reservas-coworking',
+        demo: '',
+    },
     {
         title: 'Plataforma de reserva de restaurantes',
         description:
@@ -176,15 +200,23 @@ function projectCard(p, i) {
     const demo = p.demo
         ? `<a href="${escapeHtml(p.demo)}" target="_blank" rel="noopener"><i class="fas fa-arrow-up-right-from-square"></i> Demo</a>`
         : '';
+    const highlights = p.highlights?.length
+        ? `<ul class="achievements">${p.highlights.map((h) => `<li>${escapeHtml(h)}</li>`).join('')}</ul>`
+        : '';
+    const featured = p.featured ? ' featured' : '';
+    const badge = p.featured
+        ? `<span class="project-badge featured-badge"><i class="fas fa-star"></i> Destacado</span>`
+        : `<span class="project-badge">${escapeHtml(p.category)}</span>`;
     return `
-        <article class="project-card" style="animation-delay:${i * 80}ms">
+        <article class="project-card${featured}" style="animation-delay:${i * 80}ms">
             <div class="project-thumb">
-                <span class="project-badge">${escapeHtml(p.category)}</span>
+                ${badge}
                 <img src="${escapeHtml(p.image)}" alt="Vista previa de ${escapeHtml(p.title)}" loading="lazy">
             </div>
             <div class="project-body">
                 <h3>${escapeHtml(p.title)}</h3>
                 <p>${escapeHtml(p.description)}</p>
+                ${highlights}
                 <ul class="tags">${tech}</ul>
                 <div class="project-links">
                     <a href="${escapeHtml(p.repo)}" target="_blank" rel="noopener"><i class="fab fa-github"></i> Código</a>

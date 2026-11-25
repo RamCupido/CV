@@ -426,7 +426,8 @@ img {
 .avatar-wrap {
     position: relative;
     width: min(300px, 70vw);
-    aspect-ratio: 1;
+    height: min(300px, 70vw);
+    flex-shrink: 0;
 }
 
 .avatar-ring {
@@ -979,6 +980,56 @@ img {
     font-weight: 600;
 }
 
+/* Proyecto destacado */
+.project-card.featured {
+    grid-column: 1 / -1;
+    border-color: var(--border-strong);
+}
+
+.featured-badge {
+    background: var(--gradient);
+}
+
+.project-body .achievements {
+    margin-bottom: 0.5rem;
+}
+
+.project-body .achievements li {
+    font-size: 0.92rem;
+}
+
+@media (min-width: 900px) {
+    .project-card.featured {
+        display: grid;
+        grid-template-columns: 1.05fr 1fr;
+    }
+
+    .project-card.featured .project-thumb {
+        aspect-ratio: auto;
+        min-height: 100%;
+        background: linear-gradient(135deg, #0f172a, #1e1b4b);
+    }
+
+    .project-card.featured:hover .project-thumb img {
+        transform: scale(1.03);
+    }
+
+    .project-card.featured .project-thumb img {
+        position: absolute;
+        inset: 0;
+        object-fit: contain;
+        object-position: center;
+    }
+
+    .project-card.featured .project-body {
+        padding: 1.8rem;
+    }
+
+    .project-card.featured h3 {
+        font-size: 1.4rem;
+    }
+}
+
 /* Contact */
 .contact-box {
     text-align: center;
@@ -1171,6 +1222,7 @@ a.contact-card:hover,
 
     .avatar-wrap {
         width: 190px;
+        height: 190px;
     }
 
     .code-card {
